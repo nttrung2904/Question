@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bạn có đồng ý?</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="all">
+        <div class="title">
+            <h1>
+                <b>💞💞CẬU ĐỒNG Ý LÀM NGƯỜI YÊU TỚ NHÉ!?💞💞</b>
+            </h1>
+        </div>
+        <div class="dis">
+            <h3><i>Hãy cho tớ biết câu trả lời của cậu 😙👉👈</i></h3>
+        </div>
+        <div class="btn">
+            <div class="btn1">
+                <button id="agreeBtn"><b>Đồng ý</b></button>
+            </div>
+            <div class="btn2">
+                <button id="disagreeBtn"><b>Không đồng ý</b></button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('agreeBtn').addEventListener('click', function() {
+            alert('Siuuuuuuu! Giờ cậu đã là người yêu tớ 💖💖💖');
+        });
+        
+        // Khi rê chuột đến nút "Không đồng ý"
+        document.getElementById('disagreeBtn').addEventListener('mouseover', function(event) {
+            const btn = document.getElementById('disagreeBtn');
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+        
+            // Lấy vị trí hiện tại của chuột
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+        
+            // Tính toán vị trí hiện tại của nút
+            const btnRect = btn.getBoundingClientRect();
+            const btnX = btnRect.left;
+            const btnY = btnRect.top;
+        
+            // Tính vị trí mới để di chuyển nút ngược lại với chuột
+            let newX = btnX + (btnX > mouseX ? 100 : -100); // Di chuyển sang trái hoặc phải
+            let newY = btnY + (btnY > mouseY ? 100 : -100); // Di chuyển lên hoặc xuống
+        
+            // Nếu nút chạm vào cạnh trái hoặc phải màn hình, dịch chuyển sang cạnh đối diện
+            if (newX < 0) {
+                newX = screenWidth - btn.offsetWidth; // Chuyển sang bên phải màn hình
+            } else if (newX + btn.offsetWidth > screenWidth) {
+                newX = 0; // Chuyển sang bên trái màn hình
+            }
+        
+            // Nếu nút chạm vào cạnh trên hoặc dưới màn hình, dịch chuyển sang cạnh đối diện
+            if (newY < 0) {
+                newY = screenHeight - btn.offsetHeight; // Chuyển xuống dưới màn hình
+            } else if (newY + btn.offsetHeight > screenHeight) {
+                newY = 0; // Chuyển lên trên màn hình
+            }
+        
+            // Cập nhật vị trí mới của nút "Không đồng ý"
+            btn.style.position = 'absolute';
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
+        });
+        
+    </script>
+</body>
+</html>
